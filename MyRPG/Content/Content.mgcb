@@ -13,6 +13,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Animations/PlayerAnimation.xml
+/copy:Animations/PlayerAnimation.xml
+
 #begin charaset.png
 /importer:TextureImporter
 /processor:TextureProcessor

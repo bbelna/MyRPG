@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 using MyRPG.Input;
 using MyRPG.Screens;
+using MyRPG.Xml;
 
 namespace MyRPG {
   public class RpgGame : Game {
@@ -11,6 +11,7 @@ namespace MyRPG {
     public InputManager InputManager { get; private set; }
     public GraphicsDeviceManager Graphics { get; private set; }
     public ScreenManager ScreenManager { get; private set; }
+    public XmlManager XmlManager { get; private set; }
 
     public static RpgGame Instance {
       get {
@@ -24,6 +25,7 @@ namespace MyRPG {
       Graphics = new GraphicsDeviceManager(this);
       ScreenManager = new ScreenManager();
       InputManager = new InputManager();
+      XmlManager = new XmlManager();
 
       Components.Add(ScreenManager);
       Content.RootDirectory = "Content";

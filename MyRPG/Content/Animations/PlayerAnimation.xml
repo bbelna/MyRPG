@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimationDataSet>
+  <Texture>charaset</Texture>
+  <AnimationData>
+    <Name>WalkDown</Name>
+    <Frame>
+      <X>0</X>
+      <Y>128</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <X>48</X>
+      <Y>128</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <X>96</X>
+      <Y>128</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+  </AnimationData>
+</AnimationDataSet>

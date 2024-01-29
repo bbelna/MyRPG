@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Screens;
 using MyRPG.GameObjects;
+using MyRPG.GameObjects.PlayerCharacter;
 
 namespace MyRPG.Screens
 {

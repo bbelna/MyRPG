@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using MyRPG.Graphics;
 using MyRPG.Input;
 
-namespace MyRPG.GameObjects {
+namespace MyRPG.GameObjects.PlayerCharacter {
   public class PlayerCharacter : GameObject {
     private Vector2 _position;
-    private PlayerAnimation _animation;
+    private PlayerAnimation _animation = new PlayerAnimation();
 
     public override void Draw(GameTime gameTime) {
       _animation.Draw(gameTime);

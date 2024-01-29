@@ -7,9 +7,10 @@ using System;
 
 namespace MyRPG.GameObjects
 {
-    public class GameObject : ISupportContent {
+    public class GameObject : ISupportDrawUpdateLoad {
     public string Id { get; protected set; } = new Guid().ToString();
     public bool Initialized { get; protected set; } = false;
+    public Vector2 Position { get; set; }
 
     protected ContentManager _content { get; } = RpgGame.Instance.Content;
     protected InputManager _input { get; } = RpgGame.Instance.InputManager;
