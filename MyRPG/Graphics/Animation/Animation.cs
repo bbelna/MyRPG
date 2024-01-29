@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MyRPG.ISupports;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyRPG.Graphics.Animation {
-  public class Animation : Drawable, ISupportDrawUpdateLoad {
+  public class Animation : Drawable {
     protected string _texturePath { get; set; }
     protected Texture2D _texture { get; set; }
     protected IEnumerable<Rectangle> _frames { get; set; }

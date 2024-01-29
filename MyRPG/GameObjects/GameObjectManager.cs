@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace MyRPG.GameObjects {
-  public class GameObjectManager : ISupportDrawUpdate {
+  public class GameObjectManager {
     protected IEnumerable<GameObject> _activeGameObjects;
 
     public GameObjectManager() {

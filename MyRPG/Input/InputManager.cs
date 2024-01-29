@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MyRPG.ISupports;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyRPG.Input {
-  public class InputManager : ISupportUpdate {
+  public class InputManager {
     private IList<GameInput> _activeInputs;
 
     public InputManager() {
@@ -14,6 +13,8 @@ namespace MyRPG.Input {
 
     public void Update(GameTime gameTime) {
       _activeInputs.Clear();
+      
+      // TODO custom key/controller bindings
       if (Keyboard.GetState().IsKeyDown(Keys.Down))
         _activeInputs.Add(GameInput.Down);
       if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))

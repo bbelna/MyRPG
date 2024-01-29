@@ -2,12 +2,11 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MyRPG.Input;
-using MyRPG.ISupports;
 using System;
 
 namespace MyRPG.GameObjects
 {
-    public class GameObject : ISupportDrawUpdateLoad {
+    public class GameObject {
     public string Id { get; protected set; } = new Guid().ToString();
     public bool Initialized { get; protected set; } = false;
     public Vector2 Position { get; set; }
