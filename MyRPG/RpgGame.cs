@@ -12,6 +12,7 @@ namespace MyRPG {
     public GraphicsDeviceManager Graphics { get; private set; }
     public ScreenManager ScreenManager { get; private set; }
     public XmlManager XmlManager { get; private set; }
+    public GameSettings GameSettings { get; private set; }
 
     public static RpgGame Instance {
       get {
@@ -22,10 +23,10 @@ namespace MyRPG {
     private static RpgGame _instance { get; set; }
 
     public RpgGame() {
+      XmlManager = new XmlManager();
       Graphics = new GraphicsDeviceManager(this);
       ScreenManager = new ScreenManager();
       InputManager = new InputManager();
-      XmlManager = new XmlManager();
 
       Components.Add(ScreenManager);
       Content.RootDirectory = "Content";
@@ -33,8 +34,10 @@ namespace MyRPG {
     }
 
     protected override void Initialize() {
-      base.Initialize();
+      GameSettings = XmlManager.Load<GameSettings>("Content/GameSettings.xml");
       ScreenManager.LoadScreen(new MainScreen());
+
+      base.Initialize();
     }
 
     protected override void LoadContent() {
@@ -50,6 +53,7 @@ namespace MyRPG {
 
     protected override void Draw(GameTime gameTime) {
       GraphicsDevice.Clear(Color.CornflowerBlue);
+
       SpriteBatch.Begin();
       base.Draw(gameTime);
       SpriteBatch.End();

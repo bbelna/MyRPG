@@ -3,14 +3,13 @@ using MonoGame.Extended.Screens;
 using MyRPG.GameObjects;
 using MyRPG.GameObjects.PlayerCharacter;
 
-namespace MyRPG.Screens
-{
-    public class MainScreen : GameScreen {
+namespace MyRPG.Screens {
+  public class MainScreen : GameScreen {
     private new RpgGame Game => (RpgGame)base.Game;
 
     private GameObjectManager _gameObjectManager { get; set; }
 
-    public MainScreen(): base(RpgGame.Instance) {
+    public MainScreen() : base(RpgGame.Instance) {
       _gameObjectManager = new GameObjectManager();
     }
 

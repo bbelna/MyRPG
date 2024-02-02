@@ -1,25 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AnimationDataSet>
   <Texture>charaset</Texture>
-  <AnimationData>
+  <Animation>
     <Name>WalkDown</Name>
     <Frame>
+      <Index>0</Index>
       <X>0</X>
       <Y>128</Y>
       <Width>48</Width>
       <Height>64</Height>
     </Frame>
     <Frame>
+      <Index>1</Index>
       <X>48</X>
       <Y>128</Y>
       <Width>48</Width>
       <Height>64</Height>
     </Frame>
     <Frame>
+      <Index>2</Index>
       <X>96</X>
       <Y>128</Y>
       <Width>48</Width>
       <Height>64</Height>
     </Frame>
-  </AnimationData>
+    <Frame>
+      <Index>3</Index>
+      <X>48</X>
+      <Y>128</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+  </Animation>
+  <Animation>
+    <Name>WalkUp</Name>
+    <Frame>
+      <Index>0</Index>
+      <X>0</X>
+      <Y>0</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>1</Index>
+      <X>48</X>
+      <Y>0</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>2</Index>
+      <X>96</X>
+      <Y>0</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>3</Index>
+      <X>48</X>
+      <Y>0</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+  </Animation>
+  <Animation>
+    <Name>WalkRight</Name>
+    <Frame>
+      <Index>0</Index>
+      <X>0</X>
+      <Y>65</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>1</Index>
+      <X>48</X>
+      <Y>65</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>2</Index>
+      <X>96</X>
+      <Y>65</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>3</Index>
+      <X>48</X>
+      <Y>65</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+  </Animation>
+  <Animation>
+    <Name>WalkLeft</Name>
+    <Frame>
+      <Index>0</Index>
+      <X>0</X>
+      <Y>193</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>1</Index>
+      <X>48</X>
+      <Y>193</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>2</Index>
+      <X>96</X>
+      <Y>193</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+    <Frame>
+      <Index>3</Index>
+      <X>48</X>
+      <Y>193</Y>
+      <Width>48</Width>
+      <Height>64</Height>
+    </Frame>
+  </Animation>
 </AnimationDataSet>

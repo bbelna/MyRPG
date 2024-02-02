@@ -3,7 +3,6 @@
     Left,
     Right,
     Up,
-    Down,
-    Back
+    Down
   }
 }

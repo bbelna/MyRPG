@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MyRPG.Graphics.Animation {
@@ -7,6 +6,7 @@ namespace MyRPG.Graphics.Animation {
     public string Name { get; set; }
 
     [XmlElement("Frame")]
-    public List<Rectangle> Frames { get; set; }
+    public List<AnimationFrame> Frames { get; set; }
   }
 }
+

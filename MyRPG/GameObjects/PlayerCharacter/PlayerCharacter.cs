@@ -14,11 +14,26 @@ namespace MyRPG.GameObjects.PlayerCharacter {
     public override void Update(GameTime gameTime) {
       _animation.Update(gameTime);
 
-      if (_input.IsActive(GameInput.Down)) {
-      } else if (_input.IsActive(GameInput.Up)) {
-      } else if (_input.IsActive(GameInput.Left)) {
-      } else if (_input.IsActive(GameInput.Right)) {
+      var deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+      var walkSpeed = deltaSeconds * 64;
+
+      if (_input.IsDown(GameInput.Down)) {
+        _animation.SetAnimation(PlayerAnimations.WalkDown, true);
+        _position.Y += walkSpeed;
+      } else if (_input.IsDown(GameInput.Up)) {
+        _animation.SetAnimation(PlayerAnimations.WalkUp, true);
+        _position.Y -= walkSpeed;
+      } else if (_input.IsDown(GameInput.Left)) {
+        _animation.SetAnimation(PlayerAnimations.WalkLeft, true);
+        _position.X -= walkSpeed;
+      } else if (_input.IsDown(GameInput.Right)) {
+        _animation.SetAnimation(PlayerAnimations.WalkRight, true);
+        _position.X += walkSpeed;
+      } else {
+        _animation.Pause();
       }
+
+      _animation.SetPosition(_position);
 
       base.Update(gameTime);
     }
