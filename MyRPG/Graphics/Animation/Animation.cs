@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using System.Linq;
 
 namespace MyRPG.Graphics.Animation {
@@ -50,7 +51,9 @@ namespace MyRPG.Graphics.Animation {
     }
 
     public void LoadContent() {
-      _texture = _content.Load<Texture2D>(TexturePath);
+      using (FileStream fileStream = new FileStream(TexturePath, FileMode.Open)) {
+        _texture = Texture2D.FromStream(_graphicsDevice, fileStream);
+      }
     }
 
     public void SetPosition(Vector2 position) {
@@ -81,8 +84,6 @@ namespace MyRPG.Graphics.Animation {
       if (play) Play();
     }
 
-    public void ReloadTexture() {
-      _texture = _content.Load<Texture2D>(TexturePath);
-    }
+    public void Reload() => LoadContent();
   }
 }

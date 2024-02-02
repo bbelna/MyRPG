@@ -4,8 +4,10 @@ using MonoGame.Extended.Screens;
 using MyRPG.Input;
 using MyRPG.Screens;
 using MyRPG.Xml;
+using System;
 
-namespace MyRPG {
+namespace MyRPG
+{
   public class RpgGame : Game {
     public SpriteBatch SpriteBatch { get; private set; }
     public InputManager InputManager { get; private set; }
@@ -13,6 +15,7 @@ namespace MyRPG {
     public ScreenManager ScreenManager { get; private set; }
     public XmlManager XmlManager { get; private set; }
     public InputBindings InputBindings { get; private set; }
+    public SpriteFont SpriteFont { get; private set; }
 
     public static RpgGame Instance {
       get {
@@ -21,6 +24,10 @@ namespace MyRPG {
       }
     }
     private static RpgGame _instance { get; set; }
+    private bool _halt { get; set; } = false;
+    private Exception _haltException { get; set; }
+    private int _scaleFactor { get; set; } = 1;
+    private Matrix _transformMatrix { get; set; }
 
     public RpgGame() {
       XmlManager = new XmlManager();
@@ -33,10 +40,20 @@ namespace MyRPG {
       IsMouseVisible = true;
     }
 
+    public void Halt() => _halt = true;
+
+    public void HaltWithException(Exception e) {
+      _haltException = e;
+      Halt();
+    }
+
     protected override void Initialize() {
       base.Initialize(); // this MUST come first or else screen LoadContent() gets called twice
 
-      InputBindings = XmlManager.Load<InputBindings>("Content/Bindings.xml");
+      _transformMatrix = Matrix.CreateScale(_scaleFactor, _scaleFactor, 1f);
+
+      SpriteFont = Content.Load<SpriteFont>("Fonts/Font");
+      InputBindings = XmlManager.Load<InputBindings>(Content.RootDirectory + "\\Config\\Bindings.xml");
       ScreenManager.LoadScreen(new MainScreen());
     }
 
@@ -45,17 +62,26 @@ namespace MyRPG {
     }
 
     protected override void Update(GameTime gameTime) {
-      InputManager.Update(gameTime);
-      ScreenManager.Update(gameTime);
+      if (!_halt) {
+        InputManager.Update(gameTime);
+        ScreenManager.Update(gameTime);
 
-      base.Update(gameTime);
+        base.Update(gameTime);
+      }
     }
 
     protected override void Draw(GameTime gameTime) {
-      GraphicsDevice.Clear(Color.CornflowerBlue);
+      GraphicsDevice.Clear(Color.Black);
 
-      SpriteBatch.Begin();
-      base.Draw(gameTime);
+      SpriteBatch.Begin(transformMatrix: _transformMatrix);
+      if (!_halt) {
+        base.Draw(gameTime);
+      } else if (_haltException != null) {
+        SpriteBatch.DrawString(SpriteFont, "HALT: EXCEPTION", new Vector2(0, 0), Color.Red);
+        SpriteBatch.DrawString(SpriteFont, _haltException.Message, new Vector2(0, 16), Color.White);
+      } else {
+        SpriteBatch.DrawString(SpriteFont, "HALT", new Vector2(0, 0), Color.Red);
+      }
       SpriteBatch.End();
     }
   }

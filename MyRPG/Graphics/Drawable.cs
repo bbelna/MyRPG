@@ -8,5 +8,6 @@ namespace MyRPG.Graphics {
     protected SpriteBatch _spriteBatch = RpgGame.Instance.SpriteBatch;
     protected ContentManager _content = RpgGame.Instance.Content;
     protected XmlManager _xmlManager = RpgGame.Instance.XmlManager;
+    protected GraphicsDevice _graphicsDevice = RpgGame.Instance.GraphicsDevice;
   }
 }

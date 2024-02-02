@@ -2,11 +2,12 @@
 using MonoGame.Extended.Screens;
 using MyRPG.GameObjects;
 using MyRPG.GameObjects.Player;
+using MyRPG.GameObjects.GameMap;
 
-namespace MyRPG.Screens {
-  public class MainScreen : GameScreen {
+namespace MyRPG.Screens
+{
+    public class MainScreen : GameScreen {
     private new RpgGame Game => (RpgGame)base.Game;
-
     private GameObjectManager _gameObjectManager { get; set; }
 
     public MainScreen() : base(RpgGame.Instance) {
@@ -28,6 +29,7 @@ namespace MyRPG.Screens {
     }
 
     protected void LoadGameObjects() {
+      _gameObjectManager.Add(new GameMap(Content.RootDirectory + "\\Maps\\SampleLand2.tmx"));
       _gameObjectManager.Add(new Player());
     }
   }

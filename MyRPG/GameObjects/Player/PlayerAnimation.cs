@@ -1,14 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using MyRPG.Graphics.Animation;
+﻿using MyRPG.Graphics.Animation;
 
 namespace MyRPG.GameObjects.Player {
   public class PlayerAnimation : Animation {
     public PlayerAnimation() {
       Behavior = new AnimationBehavior() { IdleFrame = 1 };
-      TexturePath = "charaset";
+      TexturePath = _content.RootDirectory + "\\Textures\\charaset.png";
 
       Pause();
-      LoadAnimationDataSet("Content/Animations/PlayerAnimation.xml");
+      LoadAnimationDataSet(_content.RootDirectory + "\\Animations\\PlayerAnimation.xml");
     }
   }
 }

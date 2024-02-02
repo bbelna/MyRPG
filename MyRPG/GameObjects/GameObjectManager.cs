@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MyRPG.GameObjects {
   public class GameObjectManager {
-    protected IEnumerable<GameObject> _activeGameObjects;
+    protected IList<GameObject> _activeGameObjects;
 
     public GameObjectManager() {
       _activeGameObjects = new List<GameObject>();
@@ -18,7 +18,8 @@ namespace MyRPG.GameObjects {
     }
 
     public void Draw(GameTime gameTime) {
-      foreach (var gameObject in _activeGameObjects) {
+      var drawObjects = _activeGameObjects.OrderByDescending(g => g.ZIndex);
+      foreach (var gameObject in drawObjects) {
         gameObject.Draw(gameTime);
       }
     }
@@ -30,7 +31,7 @@ namespace MyRPG.GameObjects {
       if (!gameObject.Initialized) {
         gameObject.LoadContent();
       }
-      _activeGameObjects = _activeGameObjects.Append(gameObject);
+      _activeGameObjects.Add(gameObject);
     }
 
     public IEnumerable<T> GetObjectsWithType<T>() where T : GameObject {

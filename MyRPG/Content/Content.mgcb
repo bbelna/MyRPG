@@ -13,18 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Animations/PlayerAnimation.xml
-/copy:Animations/PlayerAnimation.xml
-
-#begin charaset.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin Fonts/Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:charaset.png
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Font.spritefont
 
