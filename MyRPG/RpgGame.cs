@@ -12,7 +12,7 @@ namespace MyRPG {
     public GraphicsDeviceManager Graphics { get; private set; }
     public ScreenManager ScreenManager { get; private set; }
     public XmlManager XmlManager { get; private set; }
-    public GameSettings GameSettings { get; private set; }
+    public InputBindings InputBindings { get; private set; }
 
     public static RpgGame Instance {
       get {
@@ -34,10 +34,10 @@ namespace MyRPG {
     }
 
     protected override void Initialize() {
-      GameSettings = XmlManager.Load<GameSettings>("Content/GameSettings.xml");
-      ScreenManager.LoadScreen(new MainScreen());
+      base.Initialize(); // this MUST come first or else screen LoadContent() gets called twice
 
-      base.Initialize();
+      InputBindings = XmlManager.Load<InputBindings>("Content/Bindings.xml");
+      ScreenManager.LoadScreen(new MainScreen());
     }
 
     protected override void LoadContent() {

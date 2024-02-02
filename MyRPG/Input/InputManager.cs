@@ -32,9 +32,9 @@ namespace MyRPG.Input {
     }
 
     public InputBinding GetBindingForGameInput(GameInput gameInput) {
-      var gameSettings = RpgGame.Instance.GameSettings;
+      var gameSettings = RpgGame.Instance.InputBindings;
       if (gameSettings != null) {
-        var inputBindings = RpgGame.Instance.GameSettings.InputBindings;
+        var inputBindings = RpgGame.Instance.InputBindings.Bindings;
         var binding = inputBindings.FirstOrDefault(b => b.GameInput == gameInput);
         return binding;
       }
@@ -44,10 +44,10 @@ namespace MyRPG.Input {
     public bool CheckBinding(InputBinding binding) {
       if (binding == null) return false;
       if (binding.Type == InputDeviceType.Keyboard) {
-        if (Keyboard.GetState().IsKeyDown((Keys)binding.Mapping)) {
+        if (Keyboard.GetState().IsKeyDown(binding.Key)) {
           _downInputs.Add(binding.GameInput);
         }
-        if (Keyboard.GetState().IsKeyUp((Keys)binding.Mapping)) {
+        if (Keyboard.GetState().IsKeyUp(binding.Key)) {
           _upInputs.Add(binding.GameInput);
         }
       }

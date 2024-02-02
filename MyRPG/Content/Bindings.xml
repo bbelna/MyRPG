@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<GameSettings>
-  <InputBinding>
+<InputBindings>
+  <Binding>
     <Type>Keyboard</Type>
-    <Mapping>40</Mapping>
+    <Key>Down</Key>
     <GameInput>Down</GameInput>
-  </InputBinding>
-  <InputBinding>
+  </Binding>
+  <Binding>
     <Type>Keyboard</Type>
-    <Mapping>38</Mapping>
+    <Key>Up</Key>
     <GameInput>Up</GameInput>
-  </InputBinding>
-  <InputBinding>
+  </Binding>
+  <Binding>
     <Type>Keyboard</Type>
-    <Mapping>37</Mapping>
+    <Key>Left</Key>
     <GameInput>Left</GameInput>
-  </InputBinding>
-  <InputBinding>
+  </Binding>
+  <Binding>
     <Type>Keyboard</Type>
-    <Mapping>39</Mapping>
+    <Key>Right</Key>
     <GameInput>Right</GameInput>
-  </InputBinding>
-</GameSettings>
+  </Binding>
+</InputBindings>

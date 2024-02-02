@@ -4,23 +4,25 @@ using System.Linq;
 
 namespace MyRPG.Graphics.Animation {
   public abstract class Animation : Drawable {
-    protected bool _idle { get; set; } = false;
-    protected AnimationDataSet _animationDataSet { get; set; }
-    protected AnimationData _activeAnimation { get; set; }
-    protected AnimationBehavior _behavior { get; set; }
-    protected string _texturePath { get; set; }
+    public bool Idle { get; set; } = false;
+    public AnimationDataSet AnimationDataSet { get; set; }
+    public AnimationData ActiveAnimation { get; set; }
+    public AnimationBehavior Behavior { get; set; }
+    public Vector2 Position { get; set; } = new Vector2(0, 0);
+
+    public string TexturePath { get; protected set; }
+
     protected Texture2D _texture { get; set; }
     protected int _threshold { get; set; } = 250;
-    protected Vector2 _position { get; set; } = new Vector2(0, 0);
     protected int _currentAnimationIndex { get; set; } = 0;
     protected float _timer { get; set; } = 0;
 
     public void Update(GameTime gameTime) {
-      if (_activeAnimation != null) {
-        if (!_idle) {
+      if (ActiveAnimation != null) {
+        if (!Idle) {
           if (_timer > _threshold) {
             _currentAnimationIndex++;
-            if (_currentAnimationIndex >= _activeAnimation.Frames.Count()) {
+            if (_currentAnimationIndex >= ActiveAnimation.Frames.Count()) {
               _currentAnimationIndex = 0;
             }
             _timer = 0;
@@ -28,36 +30,36 @@ namespace MyRPG.Graphics.Animation {
             _timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
           }
         } else {
-          _currentAnimationIndex = _behavior.IdleFrame;
+          _currentAnimationIndex = Behavior.IdleFrame;
         }
       }
     }
 
     public void Draw(GameTime gameTime) {
       if (_texture != null
-       && _activeAnimation != null
-       && _activeAnimation.Frames != null
-       && _activeAnimation.Frames.Count() > 0) {
+       && ActiveAnimation != null
+       && ActiveAnimation.Frames != null
+       && ActiveAnimation.Frames.Count() > 0) {
         _spriteBatch.Draw(
           _texture,
-          _position,
-          _activeAnimation.Frames.ElementAt(_currentAnimationIndex).ToRectangle(),
+          Position,
+          ActiveAnimation.Frames.ElementAt(_currentAnimationIndex).ToRectangle(),
           Color.White
         );
       }
     }
 
     public void LoadContent() {
-      _texture = _content.Load<Texture2D>(_texturePath);
+      _texture = _content.Load<Texture2D>(TexturePath);
     }
 
     public void SetPosition(Vector2 position) {
-      _position = position;
+      Position = position;
     }
 
-    public void Play() => _idle = false;
+    public void Play() => Idle = false;
 
-    public void Pause() => _idle = true;
+    public void Pause() => Idle = true;
 
     public void LoadAnimationDataSet(string path) {
       var dataSet = _xmlManager.Load<AnimationDataSet>(path);
@@ -68,15 +70,19 @@ namespace MyRPG.Graphics.Animation {
 
     public void SetAnimationDataSet(AnimationDataSet dataSet) {
       if (dataSet.Animations.Count() > 0) {
-        _animationDataSet = dataSet;
-        _activeAnimation = _animationDataSet.Animations[0];
+        AnimationDataSet = dataSet;
+        ActiveAnimation = AnimationDataSet.Animations[0];
       }
     }
 
     public void SetAnimation(string name, bool play = false) {
-      if (_animationDataSet == null) return;
-      _activeAnimation = _animationDataSet.Animations.FirstOrDefault(d => d.Name == name);
+      if (AnimationDataSet == null) return;
+      ActiveAnimation = AnimationDataSet.Animations.FirstOrDefault(d => d.Name == name);
       if (play) Play();
+    }
+
+    public void ReloadTexture() {
+      _texture = _content.Load<Texture2D>(TexturePath);
     }
   }
 }
