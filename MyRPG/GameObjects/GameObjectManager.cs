@@ -41,5 +41,9 @@ namespace MyRPG.GameObjects {
     public T GetObjectWithId<T>(string id) where T : GameObject {
       return _activeGameObjects.OfType<T>().Where(o => o.Id == id).FirstOrDefault();
     }
+
+    public T GetFirstObjectWithType<T>() where T : GameObject {
+      return GetObjectsWithType<T>().FirstOrDefault();
+    }
   }
 }

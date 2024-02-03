@@ -5,6 +5,6 @@ namespace MyRPG.Input {
     public InputDeviceType Type { get; set; }
     public Keys Key { get; set; }
     public Buttons Button { get; set; }
-    public GameInput GameInput { get; set; }
+    public GameInputType GameInput { get; set; }
   }
 }

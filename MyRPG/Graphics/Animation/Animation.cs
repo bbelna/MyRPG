@@ -85,5 +85,9 @@ namespace MyRPG.Graphics.Animation {
     }
 
     public void Reload() => LoadContent();
+
+    public Texture2D GetTexture() => _texture;
+
+    public AnimationFrame GetCurrentFrame() => ActiveAnimation.Frames.ElementAt(_currentAnimationIndex);
   }
 }

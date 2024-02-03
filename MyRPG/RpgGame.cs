@@ -1,13 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Screens;
+using MonoGame.Extended.ViewportAdapters;
+using MyRPG.GameObjects;
 using MyRPG.Input;
 using MyRPG.Screens;
 using MyRPG.Xml;
 using System;
 
-namespace MyRPG
-{
+namespace MyRPG {
   public class RpgGame : Game {
     public SpriteBatch SpriteBatch { get; private set; }
     public InputManager InputManager { get; private set; }
@@ -16,6 +18,9 @@ namespace MyRPG
     public XmlManager XmlManager { get; private set; }
     public InputBindings InputBindings { get; private set; }
     public SpriteFont SpriteFont { get; private set; }
+    public ViewportAdapter ViewportAdapter { get; private set; }
+    public OrthographicCamera Camera { get; private set; }
+    public GameObjectManager GameObjectManager { get; private set; }
 
     public static RpgGame Instance {
       get {
@@ -26,14 +31,13 @@ namespace MyRPG
     private static RpgGame _instance { get; set; }
     private bool _halt { get; set; } = false;
     private Exception _haltException { get; set; }
-    private int _scaleFactor { get; set; } = 1;
-    private Matrix _transformMatrix { get; set; }
 
     public RpgGame() {
       XmlManager = new XmlManager();
       Graphics = new GraphicsDeviceManager(this);
       ScreenManager = new ScreenManager();
       InputManager = new InputManager();
+      GameObjectManager = new GameObjectManager();
 
       Components.Add(ScreenManager);
       Content.RootDirectory = "Content";
@@ -50,11 +54,15 @@ namespace MyRPG
     protected override void Initialize() {
       base.Initialize(); // this MUST come first or else screen LoadContent() gets called twice
 
-      _transformMatrix = Matrix.CreateScale(_scaleFactor, _scaleFactor, 1f);
-
-      SpriteFont = Content.Load<SpriteFont>("Fonts/Font");
+      ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+      Camera = new OrthographicCamera(ViewportAdapter);
+      Camera.Position = new Vector2(0, 0);
+      SpriteFont = Content.Load<SpriteFont>("Fonts\\Font");
       InputBindings = XmlManager.Load<InputBindings>(Content.RootDirectory + "\\Config\\Bindings.xml");
-      ScreenManager.LoadScreen(new MainScreen());
+
+      Graphics.SynchronizeWithVerticalRetrace = true;
+
+      ScreenManager.LoadScreen(new MainScreen(GameObjectManager));
     }
 
     protected override void LoadContent() {
@@ -73,7 +81,12 @@ namespace MyRPG
     protected override void Draw(GameTime gameTime) {
       GraphicsDevice.Clear(Color.Black);
 
-      SpriteBatch.Begin(transformMatrix: _transformMatrix);
+      var transformMatrix = Camera.GetViewMatrix();
+      SpriteBatch.Begin(
+          transformMatrix: transformMatrix,
+          samplerState: SamplerState.PointClamp,
+          blendState: BlendState.AlphaBlend
+        );
       if (!_halt) {
         base.Draw(gameTime);
       } else if (_haltException != null) {

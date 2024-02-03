@@ -8,6 +8,9 @@ using TiledCS;
 
 namespace MyRPG.GameObjects.GameMap {
   public class GameMap : GameObject {
+    public int Width { get => _map.Width * _map.TileWidth; }
+    public int Height { get => _map.Height * _map.TileHeight; }
+
     protected TiledMap _map { get; set; }
     protected Texture2D _tileset { get; set; }
     protected Dictionary<int, TiledTileset> _tilesets { get; set; }
