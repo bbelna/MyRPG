@@ -21,7 +21,7 @@ namespace MyRPG.Screens {
 
     public override void LoadContent() {
       _camera = Game.Camera;
-      _player = new Player();
+      _player = new Player(new Vector2(448, 544));
       _gameMap = new GameMap(Content.RootDirectory + "\\Maps\\SampleLand2.tmx");
 
       LoadGameObjects();

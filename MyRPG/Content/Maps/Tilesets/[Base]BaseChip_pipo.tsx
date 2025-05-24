@@ -3,7 +3,7 @@
  <image source="[Base]BaseChip_pipo.png" width="256" height="4256"/>
  <tile id="8">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="2" y="0" width="30" height="32"/>
+   <object id="3" x="2" y="0" width="30" height="32"/>
   </objectgroup>
  </tile>
  <tile id="9">
@@ -71,7 +71,6 @@
  <tile id="98">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
-   <object id="2" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="104">

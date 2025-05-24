@@ -22,6 +22,10 @@ namespace MyRPG.GameObjects {
     protected OrthographicCamera _camera { get; } = RpgGame.Instance.Camera;
     protected GameObjectManager _gameObjectManager { get; } = RpgGame.Instance.GameObjectManager;
 
+    public GameObject(Vector2 position = default) {
+      _position = position;
+    }
+
     public virtual void Update(GameTime gameTime) { }
 
     public virtual void Draw(GameTime gameTime) { }
